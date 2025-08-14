@@ -1,0 +1,88 @@
+Power BI Dashboard Tutorial: 
+
+Call Center Trend Analysis
+
+🎯 Objective
+To track and analyze the performance of call center agents, 
+call handling efficiency, customer satisfaction, and 
+topic-wise issue resolution using interactive visuals.
+
+This type of dashboard is commonly used to monitor agent performance, 
+call outcomes, and customer experience trends in a call center environment.
+
+
+📊 Key Sections of the Dashboard
+
+1. KPIs at the Top
+Total Calls, Answered, Rejected, Resolved, and Unresolved Calls are displayed using KPI tiles.
+Two percentage metrics:
+% Calls Answered = Answered / Total
+% Calls Resolved = Resolved / Total
+Icons (📞, ❌, ✅) are used to enhance visual comprehension.
+🔧 How to Create: Use Card visual for each metric and set custom icons via conditional formatting or Unicode.
+
+2. Filters/Slicers
+Dropdown slicers allow users to filter by:
+Topic
+Month
+Virtual Case Experience
+🔧 How to Create: Use Slicer visual, connected to appropriate columns in your data model.
+
+3. Gauge Visual: Avg vs Target Rating
+Displays current average rating versus a target (e.g., 4.40).
+Helps monitor customer satisfaction.
+🔧 Use: Gauge visual, bind it to a measure like Average(Rating) and set a target manually.
+
+4. Trend Line: Total Calls by Month
+Shows how call volume changes over time.
+Ideal for identifying peak and low seasons.
+🔧 Use: Line chart, with Month on X-axis and Total Calls on Y-axis.
+
+5. Donut Chart: Average Rating by Agent
+Displays how each agent is rated by customers.
+Easy comparison of individual performance.
+🔧 Use: Donut chart, bind Agent to legend and Average(Rating) as value.
+
+6. Bar Chart: Answered vs Resolved Calls by Agent
+Dual-series comparison for each agent.
+Identifies discrepancies between answering and resolving.
+🔧 Use: Clustered bar chart, with Agent on axis, two measures (Answered, Resolved) as values.
+
+
+
+7. Stacked Bar: Answered vs Resolved Calls by Topic
+Breaks down calls by topic and outcome.
+Shows performance by issue type.
+🔧 Use: 100% Stacked Bar Chart, with Topic as axis and Call Type as legend.
+
+8. Ribbon Chart: Resolved Calls by Agent and Topic
+A ribbon-style visual highlighting how different topics are resolved by agents.
+Emphasizes volume and variety of topics per agent.
+🔧 Use: Ribbon chart, with Agent as axis, Resolved Calls as value, and Topic as legend.
+
+9. Slicer: Agent Distribution
+Visualizes volume or count of calls per agent in a block-style layout.
+🔧 Use: Treemap, with Agent as group and Total Calls or Resolved Calls as value.
+
+🧠 Key Learnings for Power BI Users
+Use KPI Cards and Gauge Charts to show progress toward goals.
+Employ slicers for interactivity.
+Utilize dual bar charts for comparison metrics (Answered vs Resolved).
+Combine visuals and icons for intuitive storytelling.
+Maintain consistent color schemes to represent call outcomes or agents.
+
+🔧 Tips to Recreate This Dashboard
+Prepare the Data Model
+Ensure date columns are in date format.
+Use a separate Date table for filtering.
+Create Measures in DAX
+Total Calls = COUNT('Call Centre Records'[Answered (Y/N)])
+Calls answered = IF('Call Centre Records'[Answered (Y/N)]="y",1,0)
+Total Calls Answered = SUM('Call Centre Records'[Calls answered])
+calls not answered = IF('Call Centre Records'[Answered (Y/N)] = "N",1,0)
+Total Calls Not answered = SUM('Call Centre Records'[calls not answered])
+% calls not answered = DIVIDE([Total Calls Not answered],[Total Calls])
+Build and Format Visuals
+Add icons using Unicode in titles or cards.
+Format visuals to use same font and style for consistency.
+Use tooltips for extra context (e.g., agent details or call breakdown).
